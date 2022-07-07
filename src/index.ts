@@ -6,6 +6,9 @@
  import express from "express";
  import cors from "cors";
  import helmet from "helmet";
+import { employeeRouter } from "./controller/employee.router";
+import { errorHandler } from "./middleware/error.middleware";
+import { notFoundHandler } from "./middleware/not-found.middleware";
 
 dotenv.config();
 
@@ -29,6 +32,22 @@ dotenv.config();
  app.use(cors());
  app.use(express.json());
 
+ app.use("/api/employees", employeeRouter);
+ 
+ /** error handler function should register
+  * after all routes are registered.
+  * this fn should have four arguments.
+  * o/w express don't recognize this as error handler
+  * */
+ app.use(errorHandler);
+
+ /**
+  * route not found won't be handled from error handler.
+  * register this as the last middleware.
+  * so that all the things didn't catch above,
+  * will be catched from here.
+  */
+ app.use(notFoundHandler);
 /**
  * Server Activation
  */
