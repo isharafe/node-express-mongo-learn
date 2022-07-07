@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/isharafe/node-express-mongo-learn/issues"
   },
-  "homepage": "https://github.com/isharafe/node-express-mongo-learn#readme"
+  "homepage": "https://github.com/isharafe/node-express-mongo-learn#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
