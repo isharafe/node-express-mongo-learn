@@ -1,7 +1,6 @@
-import { ModelBase } from "./model-base.interface";
+import { IModelBase } from "./model-base.interface";
 
-export interface Person extends ModelBase {
-
+export interface IPerson extends IModelBase {
     name?: string;
     nic?: string;
 

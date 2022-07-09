@@ -2,7 +2,7 @@
  * Required External Modules and Interfaces
  */
 import express, { Request, Response } from "express";
-import Employee from "../model/employee";
+import { IEmployee } from "../model/employee";
 import * as EmployeeService from "../service/employee.service";
 /**
  * Router Definition
@@ -26,7 +26,7 @@ employeeRouter.get("/", async (req: Request, res: Response) => {
 
 // GET employees/:id
 employeeRouter.get("/:id", async (req: Request, res: Response) => {
-    const id: number = parseInt(req.params.id, 10);
+    const id: any = req.params.id;
 
     try {
         const employee = await EmployeeService.find(id);
@@ -43,7 +43,7 @@ employeeRouter.get("/:id", async (req: Request, res: Response) => {
 // POST employees
 employeeRouter.post("/", async (req: Request, res: Response) => {
     try {
-        const employee: Employee = req.body;
+        const employee: IEmployee = req.body;
         const saved = EmployeeService.create(employee);
         res.status(201).send(saved);
     } catch (e: any) {
@@ -56,7 +56,7 @@ employeeRouter.put("/:id", async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.id, 10);
 
     try {
-        const employee: Employee = req.body;
+        const employee: IEmployee = req.body;
         const saved = EmployeeService.update(id, employee);
         res.status(200).send(saved);
     } catch (e: any) {

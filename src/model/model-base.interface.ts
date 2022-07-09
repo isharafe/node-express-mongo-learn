@@ -1,5 +1,5 @@
-export interface ModelBase{
-    id?: number;
+export interface IModelBase {
+    id?: any;
     version?: number;
     type?: string;
 }
