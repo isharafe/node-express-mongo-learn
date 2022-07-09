@@ -13,16 +13,12 @@ export const find = async (id: number) : Promise<IEmployee> => {
 export const create = async (employee: IEmployee) : Promise<IEmployee> => {
     const emp = new Employee(employee);
     const saved = await emp.save();
-    employee.version = saved.__v;
-    employee.id = saved._id;
-    return employee;
+    return saved;
 }
 
 export const update = async (id: any, employee: IEmployee) : Promise<IEmployee> => {
-    const emp = new Employee(employee);
-    emp._id = id;
-    const saved = await emp.save();
-    employee.version = saved.__v;
+    const saved = await Employee.updateOne({_id: id}, employee);
+    console.log("after save:", employee);
     return employee;
 }
 

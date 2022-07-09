@@ -1,5 +1,5 @@
 export interface IModelBase {
-    id?: any;
-    version?: number;
+    _id?: any;
+    __v?: number;
     type?: string;
 }
